@@ -2,6 +2,7 @@
 
 export("%>%")
 export(convert_character_to_number_correctly)
+export(cross_df_safe)
 export(view_cols)
 export(view_slice)
 importFrom(magrittr,"%<>%")
