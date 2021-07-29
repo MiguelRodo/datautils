@@ -2,15 +2,29 @@
 #'
 #' @description Returns the cartesian of all its elements in a list
 #' as a dataframe, with one combination per row.
-#' Differs from `purrr::cross_df` in that to-cross elements
-#' such as \code{list(1, 2:3)} keep
-#' their multi-length elements in one combination.
-#'
-#' See examples for this to be shown.
+
 #'
 #' @param .l A list of lists or atomic vectors (or, a dataframe).
 #' @param .filter function.
 #' A predicate function that takes the same number of arguments as the number of variables to be combined.
+#'
+#' @details
+#' Elements in the list to be crossed
+#' such as \code{list(1, 2:3)} keep
+#' their multi-length elements in one combination
+#' (i.e. one dataframe row).
+#' That is the sense in which is "safe",
+#' as it behaves as expected.
+#' The function `purrr::cross` returns an error
+#' in this case, whilst `purrr::cross` piped
+#' `purrr::map_df(tibble::as_tibble)` w
+#' creates two combinations (two dataframe rows)
+#' from the second list element above.
+#' One could wrap the second element in a list, but
+#' that adds an extra layer when accessing the element
+#' in the combination.
+#'
+#' See examples for a demonstration.
 #'
 #' @examples
 #' to_cross_list <- list(
