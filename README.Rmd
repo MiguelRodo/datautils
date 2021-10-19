@@ -26,7 +26,7 @@ You can install datautils from [GitHub](https://www.github.com) with:
 
 ```{r , eval = FALSE}
 if(!require("devtools", quietly = TRUE)) install.packages('devtools')
-devtools::install_github("SATVILab/datpreputils.git")
+devtools::install_github("MiguelRodo/datautils.git")
 ```
 
 ## Examples
