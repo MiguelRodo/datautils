@@ -36,4 +36,37 @@ test_that("cross_df_safe works", {
                              list("2"), list("2"))),
               row.names = c(NA, -4L), class = c("tbl_df", "tbl", "data.frame"))
   )
+
+  to_cross_list_list <- list(
+    V1 = c("a", "b"),
+    V2 = list(
+      list("a" = "c"),
+      list("b" = "d")
+    )
+  )
+  expect_identical(
+    cross_df_safe(to_cross_list_list)$V2[1],
+    list("a" = "c")
+  )
+  expect_identical(
+    cross_df_safe(to_cross_list_list)$V2[[3]],
+    "d"
+  )
+  expect_identical(
+    cross_df_safe(to_cross_list_list)$V1,
+    rep(c("a", "b"), 2)
+  )
 })
+
+to_cross_list_list <- list(
+  V1 = c(list("a"), list("b")),
+  V2 = list(
+    c("a" = "c"),
+    c("b" = "d")
+  )
+)
+cross_df_sf <- cross_df_safe(to_cross_list_list)
+expect_identical(
+  cross_df_sf$V2[[1]],
+ c("a" = "c")
+)
