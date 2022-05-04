@@ -13,27 +13,27 @@ knitr::opts_chunk$set(
 )
 ```
 
-# datautils
+# UtilsDataRSV
 
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of datautils is to make miscellaneous data processing tasks easier. 
+The goal of UtilsDataRSV is to make miscellaneous data processing tasks easier. 
 
 ## Installation
 
-You can install datautils from [GitHub](https://www.github.com) with:
+You can install UtilsDataRSV from [GitHub](https://www.github.com) with:
 
 ```{r , eval = FALSE}
-if(!require("devtools", quietly = TRUE)) install.packages('devtools')
-devtools::install_github("MiguelRodo/datautils.git")
+if(!require("remotes", quietly = TRUE)) install.packages('remotes')
+remotes::install_github("MiguelRodo/UtilsDataRSV.git")
 ```
 
 ## Examples
 
 Load the package. 
 ```{r }
-library(datautils)
+library(UtilsDataRSV)
 ```
 
 Display a random selection of (a limited number) of unique entries from each column. 

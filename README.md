@@ -1,21 +1,21 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# datautils
+# UtilsDataRSV
 
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of datautils is to make miscellaneous data processing tasks
+The goal of UtilsDataRSV is to make miscellaneous data processing tasks
 easier.
 
 ## Installation
 
-You can install datautils from [GitHub](https://www.github.com) with:
+You can install UtilsDataRSV from [GitHub](https://www.github.com) with:
 
 ``` r
-if(!require("devtools", quietly = TRUE)) install.packages('devtools')
-devtools::install_github("MiguelRodo/datautils.git")
+if(!require("remotes", quietly = TRUE)) install.packages('remotes')
+remotes::install_github("MiguelRodo/UtilsDataRSV.git")
 ```
 
 ## Examples
@@ -23,7 +23,7 @@ devtools::install_github("MiguelRodo/datautils.git")
 Load the package.
 
 ``` r
-library(datautils)
+library(UtilsDataRSV)
 ```
 
 Display a random selection of (a limited number) of unique entries from
@@ -33,25 +33,25 @@ each column.
 data('mtcars')
 view_cols(mtcars)
 #> [1] "mpg"
-#> [1] 32.4 33.9 19.7 21.4 15.8
+#> [1] 21.5 13.3 22.8 19.7 24.4
 #> [1] "_____________________"
 #> [1] "cyl"
-#> [1] 4 8 6
+#> [1] 6 4 8
 #> [1] "_____________________"
 #> [1] "disp"
-#> [1] 167.6  78.7 350.0 140.8 120.1
+#> [1] 360.0  78.7 275.8  95.1 440.0
 #> [1] "_____________________"
 #> [1] "hp"
-#> [1]  95 180  93  91 110
+#> [1]  91 264 150 113  93
 #> [1] "_____________________"
 #> [1] "drat"
-#> [1] 3.15 4.43 4.93 3.77 3.73
+#> [1] 3.23 3.92 4.93 4.11 4.43
 #> [1] "_____________________"
 #> [1] "wt"
-#> [1] 2.140 1.835 1.935 2.320 3.440
+#> [1] 2.780 1.615 3.570 2.140 3.190
 #> [1] "_____________________"
 #> [1] "qsec"
-#> [1] 16.46 17.05 17.98 14.60 20.22
+#> [1] 18.61 16.70 17.42 19.90 18.30
 #> [1] "_____________________"
 #> [1] "vs"
 #> [1] 1 0
@@ -60,10 +60,10 @@ view_cols(mtcars)
 #> [1] 0 1
 #> [1] "_____________________"
 #> [1] "gear"
-#> [1] 5 4 3
+#> [1] 3 5 4
 #> [1] "_____________________"
 #> [1] "carb"
-#> [1] 3 6 4 2 1
+#> [1] 8 1 6 4 3
 #> [1] "_____________________"
 ```
 

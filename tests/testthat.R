@@ -1,4 +1,4 @@
 library(testthat)
-library(datautils)
+library(UtilsDataRSV)
 
-test_check("datautils")
+test_check("UtilsDataRSV")
