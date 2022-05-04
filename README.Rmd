@@ -25,7 +25,7 @@ The goal of UtilsDataRSV is to make miscellaneous data processing tasks easier.
 You can install UtilsDataRSV from [GitHub](https://www.github.com) with:
 
 ```{r , eval = FALSE}
-if(!require("remotes", quietly = TRUE)) install.packages('remotes')
+if (!require("remotes", quietly = TRUE)) install.packages("remotes")
 remotes::install_github("MiguelRodo/UtilsDataRSV.git")
 ```
 
@@ -38,7 +38,7 @@ library(UtilsDataRSV)
 
 Display a random selection of (a limited number) of unique entries from each column. 
 ```{r view_cols}
-data('mtcars')
+data("mtcars")
 view_cols(mtcars)
 ```
 
@@ -53,7 +53,7 @@ tibble::tibble(original = x, corrected = x_corrected)
 
 Display a subset of entries per group (a thin wrapper around `dplyr::group_by` and `dplyr::slice`).
 ```{r view_slice}
-data('cars')
-cars[,'grp'] <- rep(letters[1:5], each = 10)
-view_slice(cars, group = 'grp', n_slice = 2)
+data("cars")
+cars[, "grp"] <- rep(letters[1:5], each = 10)
+view_slice(cars, group = "grp", n_slice = 2)
 ```

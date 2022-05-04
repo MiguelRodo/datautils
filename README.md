@@ -14,7 +14,7 @@ easier.
 You can install UtilsDataRSV from [GitHub](https://www.github.com) with:
 
 ``` r
-if(!require("remotes", quietly = TRUE)) install.packages('remotes')
+if (!require("remotes", quietly = TRUE)) install.packages("remotes")
 remotes::install_github("MiguelRodo/UtilsDataRSV.git")
 ```
 
@@ -30,40 +30,40 @@ Display a random selection of (a limited number) of unique entries from
 each column.
 
 ``` r
-data('mtcars')
+data("mtcars")
 view_cols(mtcars)
 #> [1] "mpg"
-#> [1] 21.5 13.3 22.8 19.7 24.4
+#> [1] 18.1 15.8 26.0 19.2 21.0
 #> [1] "_____________________"
 #> [1] "cyl"
 #> [1] 6 4 8
 #> [1] "_____________________"
 #> [1] "disp"
-#> [1] 360.0  78.7 275.8  95.1 440.0
+#> [1] 120.1 275.8 167.6  75.7 460.0
 #> [1] "_____________________"
 #> [1] "hp"
-#> [1]  91 264 150 113  93
+#> [1] 109  66 245 175  62
 #> [1] "_____________________"
 #> [1] "drat"
-#> [1] 3.23 3.92 4.93 4.11 4.43
+#> [1] 3.62 3.73 3.69 3.07 3.08
 #> [1] "_____________________"
 #> [1] "wt"
-#> [1] 2.780 1.615 3.570 2.140 3.190
+#> [1] 3.780 3.150 2.780 1.615 3.840
 #> [1] "_____________________"
 #> [1] "qsec"
-#> [1] 18.61 16.70 17.42 19.90 18.30
+#> [1] 15.84 17.60 16.90 20.22 18.00
 #> [1] "_____________________"
 #> [1] "vs"
-#> [1] 1 0
-#> [1] "_____________________"
-#> [1] "am"
 #> [1] 0 1
 #> [1] "_____________________"
+#> [1] "am"
+#> [1] 1 0
+#> [1] "_____________________"
 #> [1] "gear"
-#> [1] 3 5 4
+#> [1] 4 5 3
 #> [1] "_____________________"
 #> [1] "carb"
-#> [1] 8 1 6 4 3
+#> [1] 1 2 3 4 6
 #> [1] "_____________________"
 ```
 
@@ -91,9 +91,9 @@ Display a subset of entries per group (a thin wrapper around
 `dplyr::group_by` and `dplyr::slice`).
 
 ``` r
-data('cars')
-cars[,'grp'] <- rep(letters[1:5], each = 10)
-view_slice(cars, group = 'grp', n_slice = 2)
+data("cars")
+cars[, "grp"] <- rep(letters[1:5], each = 10)
+view_slice(cars, group = "grp", n_slice = 2)
 #> # A tibble: 10 x 3
 #> # Groups:   grp [5]
 #>    speed  dist grp  
