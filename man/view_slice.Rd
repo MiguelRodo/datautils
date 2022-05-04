@@ -54,7 +54,7 @@ Wrapper around
 Returns subsetted data invisibly.
 }
 \examples{
-data('cars')
-cars[,'grp'] <- rep(letters[1:5], each = 10)
-view_slice(cars, group = 'grp', n_slice = 2)
+data("cars")
+cars[, "grp"] <- rep(letters[1:5], each = 10)
+view_slice(cars, group = "grp", n_slice = 2)
 }

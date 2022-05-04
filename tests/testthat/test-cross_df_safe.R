@@ -18,11 +18,16 @@ test_that("cross_df_safe works", {
   )
   expect_identical(
     cross_df_safe(to_cross_list),
-    structure(list(v1 = c("a", "b", "a", "b"),
-                   v2 = list(3, 3, 4:5,
-                             4:5)),
-              row.names = c(NA, -4L),
-              class = c("tbl_df", "tbl", "data.frame"))
+    structure(list(
+      v1 = c("a", "b", "a", "b"),
+      v2 = list(
+        3, 3, 4:5,
+        4:5
+      )
+    ),
+    row.names = c(NA, -4L),
+    class = c("tbl_df", "tbl", "data.frame")
+    )
   )
 
   to_cross_list_list <- list(
@@ -31,10 +36,15 @@ test_that("cross_df_safe works", {
   )
   expect_identical(
     cross_df_safe(to_cross_list_list),
-    structure(list(v1 = c("a", "b", "a", "b"),
-                   v3 = list("1", "1",
-                             list("2"), list("2"))),
-              row.names = c(NA, -4L), class = c("tbl_df", "tbl", "data.frame"))
+    structure(list(
+      v1 = c("a", "b", "a", "b"),
+      v3 = list(
+        "1", "1",
+        list("2"), list("2")
+      )
+    ),
+    row.names = c(NA, -4L), class = c("tbl_df", "tbl", "data.frame")
+    )
   )
 
   to_cross_list_list <- list(
@@ -68,5 +78,5 @@ to_cross_list_list <- list(
 cross_df_sf <- cross_df_safe(to_cross_list_list)
 expect_identical(
   cross_df_sf$V2[[1]],
- c("a" = "c")
+  c("a" = "c")
 )

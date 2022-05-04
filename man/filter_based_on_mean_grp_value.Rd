@@ -40,17 +40,22 @@ and the denominator cell count is not consistently much higher than 100.
 }
 \examples{
 set.seed(3)
-test_tbl <- tibble(pid = rep(c('id1', 'id2', 'id1', 'id2'),  each = 2),
-                 type = c(paste0(rep(c("a", "b"), each = 4), rep(c("", "_1"), 4)))) \%>\%
- mutate(type_base = stringr::str_remove(type, "_1")) \%>\%
- group_by(pid, type_base) \%>\%
- mutate(resp = purrr::map_dbl(type_base, function(x){
-   round(rnorm(1, 5 + stringr::str_detect(x, "b") * 3), 2)})[1]) \%>\%
-   ungroup() \%>\%
- mutate(resp = ifelse(str_detect(type, "_1"), rep(runif(4, 1e4, 1e5), each = 2), 1) * resp)
+test_tbl <- tibble(
+  pid = rep(c("id1", "id2", "id1", "id2"), each = 2),
+  type = c(paste0(rep(c("a", "b"), each = 4), rep(c("", "_1"), 4)))
+) \%>\%
+  mutate(type_base = stringr::str_remove(type, "_1")) \%>\%
+  group_by(pid, type_base) \%>\%
+  mutate(resp = purrr::map_dbl(type_base, function(x) {
+    round(rnorm(1, 5 + stringr::str_detect(x, "b") * 3), 2)
+  })[1]) \%>\%
+  ungroup() \%>\%
+  mutate(resp = ifelse(str_detect(type, "_1"), rep(runif(4, 1e4, 1e5), each = 2), 1) * resp)
 
- test_tbl
+test_tbl
 
- filter_based_on_mean_grp_value(data = test_tbl, val = 'resp', grp_outer = 'type_base',
-                                grp_inner = 'type', sel = 'smaller')
+filter_based_on_mean_grp_value(
+  data = test_tbl, val = "resp", grp_outer = "type_base",
+  grp_inner = "type", sel = "smaller"
+)
 }

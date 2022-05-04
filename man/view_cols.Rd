@@ -34,7 +34,8 @@ displayed entries if present.
 }
 \examples{
 test_df <- data.frame(x = rnorm(1e3), y = sample(c("a", "b"),
-                                                 size = 1e3,
-                                                 replace = TRUE))
+  size = 1e3,
+  replace = TRUE
+))
 view_cols(test_df)
 }

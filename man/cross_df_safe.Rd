@@ -46,8 +46,8 @@ See examples for a demonstration.
 # cross_df_safe automatically
 # "protects" non-list list elements
 to_cross_list <- list(
- V1 = c("a", "b"),
- V2 = list(3, 4:5)
+  V1 = c("a", "b"),
+  V2 = list(3, 4:5)
 )
 # returns an error
 try(purrr::cross_df(to_cross_list))
@@ -71,13 +71,13 @@ cross_df_sf$V2
 # no element in a combination
 # is needlessly wrapped inside an unnamed list of length 1
 
-# 
+#
 to_cross_list_list <- list(
   V1 = c(list("a"), list("b")),
   V2 = list(
     c("a" = "c"),
     c("b" = "d")
- )
+  )
 )
 
 cross_df_std <- purrr::cross_df(to_cross_list_list)
@@ -85,7 +85,7 @@ cross_df_sf <- cross_df_safe(to_cross_list_list)
 # purr:cross_df needlessly places each element of V2
 # (e.g. list("a" = "c")) in its own list:
 cross_df_std$V2
-#the above means that to refer to the element, you need to 
+# the above means that to refer to the element, you need to
 # add an extra set of brackets:
 # cross_df_std$V2[[1]][[1]]
 # in this case, however,cross_df_safe flattens the list by one level:

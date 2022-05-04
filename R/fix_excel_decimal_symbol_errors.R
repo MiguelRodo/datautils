@@ -26,30 +26,32 @@
 #' x_period <- c("1.32", "1", "0.23", "3.23E-2", NA)
 #' # original data alongside corrected data
 #' data.frame(orig = x, replacement = convert_character_to_number_correctly(x = x))
-convert_character_to_number_correctly <- function(x){
+convert_character_to_number_correctly <- function(x) {
   x_rep_vec <- rep(NA_real_, length(x))
 
   # loop over elements (so fn is vectorised by default)
-  for(i in seq_along(x)){
+  for (i in seq_along(x)) {
     # get current element
     elem_curr <- x[i]
     # replacement element is NA if current element is NA
-    if(is.na(elem_curr)) next
+    if (is.na(elem_curr)) next
 
     # get exponent (if not present, set to 0)
     # ---------------
-    if(stringr::str_detect(elem_curr, "E")){
-      e_loc <- stringr::str_locate(elem_curr, "E")[1,"end"][[1]]
+    if (stringr::str_detect(elem_curr, "E")) {
+      e_loc <- stringr::str_locate(elem_curr, "E")[1, "end"][[1]]
       exp_chr_as_num <- as.numeric(stringr::str_sub(elem_curr, start = e_loc + 1))
       elem_curr <- stringr::str_sub(elem_curr, end = e_loc - 1)
-    } else exp_chr_as_num <- 0
+    } else {
+      exp_chr_as_num <- 0
+    }
 
     # split into integer and fraction components
     # ---------------
-    dec_symbol_loc <- stringr::str_locate(elem_curr, ",|\\.")[1,"end"][[1]]
+    dec_symbol_loc <- stringr::str_locate(elem_curr, ",|\\.")[1, "end"][[1]]
 
     # if no comma found, then return original value (after applying exponent)
-    if(is.na(dec_symbol_loc)){
+    if (is.na(dec_symbol_loc)) {
       x_rep_vec[i] <- as.numeric(elem_curr) * 10^exp_chr_as_num
       next
     }
@@ -57,7 +59,7 @@ convert_character_to_number_correctly <- function(x){
     # if a comma found, then split and sum
     int <- as.numeric(stringr::str_sub(elem_curr, end = dec_symbol_loc - 1))
     frac_chr <- stringr::str_sub(elem_curr, start = dec_symbol_loc + 1)
-    frac <- as.numeric(frac_chr)/(10^stringr::str_length(frac_chr))
+    frac <- as.numeric(frac_chr) / (10^stringr::str_length(frac_chr))
     val <- int + frac
 
     # return, applying

@@ -31,96 +31,102 @@
 #' @export
 #'
 #' @examples
-#' data('cars')
-#' cars[,'grp'] <- rep(letters[1:5], each = 10)
-#' view_slice(cars, group = 'grp', n_slice = 2)
+#' data("cars")
+#' cars[, "grp"] <- rep(letters[1:5], each = 10)
+#' view_slice(cars, group = "grp", n_slice = 2)
 view_slice <- function(data, group, select = NULL, n_print = 1e3,
                        n_slice = 1, seed = NULL,
                        sample_within_group = FALSE,
                        sample = FALSE, prop_sample = NULL,
-                       return = FALSE){
+                       return = FALSE) {
 
   # checks
   # -----------------
-  if(!is.data.frame(data)){
+  if (!is.data.frame(data)) {
     stop("data must be a dataframe",
-         call. = FALSE)
+      call. = FALSE
+    )
   }
 
-  if(!tibble::is_tibble(data)){
+  if (!tibble::is_tibble(data)) {
     data %<>% tibble::as_tibble()
   }
 
-  if(!is.character(group)){
+  if (!is.character(group)) {
     stop("group must be a character vector")
   }
 
-  if(!is.numeric(n_print)){
+  if (!is.numeric(n_print)) {
     stop("n_print must be of class numeric")
   }
 
-  if(!is.integer(n_print)){
+  if (!is.integer(n_print)) {
     n_print <- floor(n_print)
   }
-  if(!is.null(prop_sample)){
-    if(prop_sample < 0 || prop_sample > 1){
-      stop('prop_sample must be be between 0 and 1 if not NULL')
+  if (!is.null(prop_sample)) {
+    if (prop_sample < 0 || prop_sample > 1) {
+      stop("prop_sample must be be between 0 and 1 if not NULL")
     }
   }
-  if(!is.logical(return)) stop("return must be logical")
+  if (!is.logical(return)) stop("return must be logical")
 
-  if(!is.null(seed)) set.seed(seed = seed)
+  if (!is.null(seed)) set.seed(seed = seed)
 
   out_tbl <- data %>%
     dplyr::group_by(!!ensym(group))
 
-  if(!is.null(select)){
-    if(!is.character(select)) stop(
-      "select must be character vector or NULL"
-    )
-    out_tbl <- out_tbl[,unique(c(group, select))]
+  if (!is.null(select)) {
+    if (!is.character(select)) {
+      stop(
+        "select must be character vector or NULL"
+      )
+    }
+    out_tbl <- out_tbl[, unique(c(group, select))]
   }
 
-  if(n_print == 0){
-    if(return){
-      out_tbl <- out_tbl[1,]
-      out_tbl <- out_tbl[-1,]
+  if (n_print == 0) {
+    if (return) {
+      out_tbl <- out_tbl[1, ]
+      out_tbl <- out_tbl[-1, ]
       return(out_tbl)
-    } else return(invisible(TRUE))
+    } else {
+      return(invisible(TRUE))
+    }
   }
 
-  if(!sample){
+  if (!sample) {
     out_tbl %<>%
       dplyr::slice(1:n_slice)
-  } else{
-    if(sample_within_group){
-      if(!is.null(prop_sample)){
+  } else {
+    if (sample_within_group) {
+      if (!is.null(prop_sample)) {
         out_tbl %<>%
           dplyr::slice_sample(prop = prop_sample)
-      } else{
+      } else {
         out_tbl %<>%
           dplyr::slice_sample(n = n_slice)
       }
-    } else{
-      if(!is.null(prop_sample)){
+    } else {
+      if (!is.null(prop_sample)) {
         n_slice <- floor(prop_sample * nrow(out_tbl))
       }
       sample_vec <- sample(
         1:nrow(out_tbl),
         size = max(min(nrow(out_tbl), n_slice), 1),
         replace = FALSE
-        )
-      out_tbl <- out_tbl[sample_vec,]
+      )
+      out_tbl <- out_tbl[sample_vec, ]
     }
   }
 
-  if(n_print > 0){
+  if (n_print > 0) {
     out_tbl %>%
       print(n = n_print)
   }
 
-  if(!return) return(invisible(TRUE))
+  if (!return) {
+    return(invisible(TRUE))
+  }
 
   out_tbl
-
 }
