@@ -6,7 +6,8 @@
 #'
 #' @param .l A list of lists or atomic vectors (or, a dataframe).
 #' @param .filter function.
-#' A predicate function that takes the same number of arguments as the number of variables to be combined.
+#' A predicate function that takes the same number of arguments
+#' as the number of variables to be combined.
 #'
 #' @details
 #' Elements in the list to be crossed

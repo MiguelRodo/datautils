@@ -10,7 +10,8 @@ cross_df_safe(.l, .filter = NULL)
 \item{.l}{A list of lists or atomic vectors (or, a dataframe).}
 
 \item{.filter}{function.
-A predicate function that takes the same number of arguments as the number of variables to be combined.}
+A predicate function that takes the same number of arguments
+as the number of variables to be combined.}
 }
 \value{
 A dataframe with the same number of rows as
